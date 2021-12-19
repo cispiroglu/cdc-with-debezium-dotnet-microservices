@@ -1,6 +1,14 @@
-﻿namespace Leave.Infrastructure.Repositories.EmployeeLeaveAggregate;
+﻿using Infrastructure.EntityFramework;
+using Leave.Domain.Aggregates.EmployeeLeaveAggregate;
+using Leave.Infrastructure.Data;
 
-public class EmployeeLeaveQueryRepository
+namespace Leave.Infrastructure.Repositories.EmployeeLeaveAggregate;
+
+public class EmployeeLeaveQueryRepository : BaseDomainQueryRepository<LeaveDbContext, EmployeeLeave>, IEmployeeLeaveQueryRepository
 {
-    
+    public EmployeeLeaveQueryRepository(LeaveDbContext leaveDbContext)
+        :base(leaveDbContext)
+    {
+        // ...
+    }
 }

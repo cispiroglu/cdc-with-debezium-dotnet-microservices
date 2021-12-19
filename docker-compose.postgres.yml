@@ -64,8 +64,8 @@ services:
     container_name: cdc_debezium_postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: admin
-      POSTGRES_USER: zvjrWbFHf6jT
+      POSTGRES_PASSWORD: zvjrWbFHf6jT
+      POSTGRES_USER: admin
     ports:
       - '5432:5432'
     networks:

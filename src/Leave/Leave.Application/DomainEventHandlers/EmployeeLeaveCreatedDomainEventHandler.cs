@@ -5,11 +5,11 @@ using Shared.Common.Extensions;
 
 namespace Leave.Application.DomainEventHandlers;
 
-public class LeaveCreatedDomainEventHandler : INotificationHandler<DomainEventNotification<EmployeeLeaveCreatedDomainEvent>>
+public class EmployeeLeaveCreatedDomainEventHandler : INotificationHandler<DomainEventNotification<EmployeeLeaveCreatedDomainEvent>>
 {
     public Task Handle(DomainEventNotification<EmployeeLeaveCreatedDomainEvent> notification, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"LeaveCreateDomainEvent: {notification.ToJSON()}");
+        Console.WriteLine($"EmployeeLeaveCreatedDomainEvent: {notification.DomainEvent.ToJSON()}");
         return Task.CompletedTask;
     }
 }

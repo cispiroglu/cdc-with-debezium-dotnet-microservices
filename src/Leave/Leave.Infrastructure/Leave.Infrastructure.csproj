@@ -13,4 +13,8 @@
       <ProjectReference Include="..\Leave.Application\Leave.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations" />
+    </ItemGroup>
+
 </Project>

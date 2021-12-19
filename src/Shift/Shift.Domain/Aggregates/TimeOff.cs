@@ -2,29 +2,27 @@
 
 namespace Shift.Domain.Aggregates;
 
-public class TimeOffAggregate : AggregateRoot<TimeOffAggregate>
+public class TimeOff : AggregateRoot<TimeOff>
 {
     public virtual Guid Id { get; }
     public virtual Guid EmployeeId { get; }
-    public virtual DateTime StartDate { get; }
-    public virtual DateTime EndDate { get; }
+    public virtual DateTime TimeOffDate { get; }
 
-    private TimeOffAggregate(Guid id, Guid employeeId, DateTime startDate, DateTime endDate)
+    private TimeOff(Guid id, Guid employeeId, DateTime timeOffDate)
     {
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         EmployeeId = employeeId;
-        StartDate = startDate;
-        EndDate = endDate;
+        TimeOffDate = timeOffDate;
     }
 
-    public static TimeOffAggregate ForCreate(Guid employeeId, DateTime startDate, DateTime endDate)
+    public static TimeOff ForCreate(Guid employeeId, DateTime timeOffDate)
     {
         
-        return new TimeOffAggregate(Guid.Empty, employeeId, startDate, endDate);
+        return new TimeOff(Guid.Empty, employeeId, timeOffDate);
     }
     
-    public static TimeOffAggregate ForUpdate(Guid id, Guid employeeId, DateTime startDate, DateTime endDate)
+    public static TimeOff ForUpdate(Guid id, Guid employeeId, DateTime timeOffDate)
     {
-        return new TimeOffAggregate(id, employeeId, startDate, endDate);
+        return new TimeOff(id, employeeId, timeOffDate);
     }
 }

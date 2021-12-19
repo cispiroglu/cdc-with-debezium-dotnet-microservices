@@ -7,7 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\API\Shared.API\Shared.API.csproj" />
+      <ProjectReference Include="..\..\Shared\Infrastructure\Autofac\Infrastructure.Autofac\Infrastructure.Autofac.csproj" />
+      <ProjectReference Include="..\..\Shared\Infrastructure\Kafka\Infrastructure.Kafka.Extensions.Autofac\Infrastructure.Kafka.Extensions.Autofac.csproj" />
+      <ProjectReference Include="..\Shift.Infrastructure\Shift.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
-﻿namespace Shift.Domain.Aggregates;
+﻿using Shared.Common;
 
-public interface ITimeOffQueryRepository
+namespace Shift.Domain.Aggregates;
+
+public interface ITimeOffQueryRepository : IDomainQueryRepository<TimeOff>
 {
     
 }

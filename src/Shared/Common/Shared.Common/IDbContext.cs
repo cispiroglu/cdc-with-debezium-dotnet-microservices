@@ -1,6 +1,6 @@
 ﻿namespace Shared.Common;
 
-public class IDbContext
+public interface IDbContext
 {
-    
+    Task SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
 }

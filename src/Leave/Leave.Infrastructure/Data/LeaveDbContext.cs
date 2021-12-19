@@ -1,7 +1,10 @@
 ﻿using Infrastructure.EntityFramework;
+using Leave.Domain.Aggregates.EmployeeLeaveAggregate;
+using Leave.Infrastructure.Data.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Shared.Common;
+using Shared.Common.DomainEventDispatcher;
 using Shared.Common.Extensions;
 using Shared.Common.Extensions.Configuration;
 
@@ -24,6 +27,8 @@ public class LeaveDbContextDbFactory : IDesignTimeDbContextFactory<LeaveDbContex
                 optionsBuilder.UseSqlServer(dbParams.ConnectionString);
                 break;
             case DbType.PostgreSQL:
+                optionsBuilder.UseNpgsql(dbParams.ConnectionString);
+                break;
             case DbType.Oracle:
             case DbType.MySQL:
             case DbType.SQLite:
@@ -40,6 +45,19 @@ public class LeaveDbContextDbFactory : IDesignTimeDbContextFactory<LeaveDbContex
 
 public class LeaveDbContext : BaseDbContext<LeaveDbContext>
 {
+    public DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="options"></param>
+    /// <param name="domainEventDispatcher"></param>
+    public LeaveDbContext(DbContextOptions<LeaveDbContext> options, IDomainEventDispatcher domainEventDispatcher)
+        : base(options, domainEventDispatcher)
+    {
+        // ....
+    }
+    
     /// <summary>
     /// 
     /// </summary>
@@ -52,7 +70,7 @@ public class LeaveDbContext : BaseDbContext<LeaveDbContext>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
+        modelBuilder.ApplyConfiguration(new EmployeeLeaveEntityTypeConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 }

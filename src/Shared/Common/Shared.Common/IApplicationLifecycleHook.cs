@@ -1,6 +1,10 @@
 ﻿namespace Shared.Common;
 
-public class IApplicationLifecycleHook
+public interface IApplicationLifecycleHook
 {
-    
+    void OnStarted();
+
+    void OnStopRequested();
+
+    void OnStopped();
 }

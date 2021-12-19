@@ -1,9 +1,8 @@
 version: '3.7'
 
 services:
-  
   zookeeper:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:5.4.6
     container_name: zookeeper
     networks:
       - broker-kafka
@@ -12,9 +11,9 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-
+      
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:5.4.6
     container_name: kafka
     networks:
       - broker-kafka
@@ -33,7 +32,7 @@ services:
       KAFKA_MIN_INSYNC_REPLICAS: 1
 
   connector:
-    image: debezium/connect:latest
+    image: debezium/connect:1.8
     container_name: kafka_connect_with_debezium
     networks:
       - broker-kafka
@@ -49,7 +48,7 @@ services:
       - kafka
 
   kafdrop:
-    image: obsidiandynamics/kafdrop:latest
+    image: obsidiandynamics/kafdrop:3.27.0
     container_name: kafdrop
     networks:
       - broker-kafka
@@ -59,6 +58,24 @@ services:
       - 9000:9000
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
+      
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-CU8-ubuntu
+    container_name: cdc_debezium_sql
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=zvjrWbFHf6jT
+    ports:
+      - '1433:1433'
+    volumes:
+      - cdc_debezium_sql_mssql_data:/var/opt/mssql
+    networks:
+      - broker-kafka
+
+volumes:
+  cdc_debezium_sql_mssql_data:
+    driver: local
 
 networks:
   broker-kafka:

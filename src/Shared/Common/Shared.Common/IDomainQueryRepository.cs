@@ -1,6 +1,10 @@
-﻿namespace Shared.Common;
+﻿using Shared.Common.AggregateRoot;
 
-public interface IDomainQueryRepository
+namespace Shared.Common;
+
+public interface  IDomainQueryRepository<TAggregateRoot> where TAggregateRoot : IAggregateRoot
 {
-    
+    IEnumerable<TAggregateRoot> GetAll();
+        
+    TAggregateRoot Get(Guid key);
 }

@@ -1,4 +1,6 @@
-﻿namespace Shared.Common;
+﻿using Shared.Common.DomainEvent;
+
+namespace Shared.Common.DomainEventDispatcher;
 
 public interface IDomainEventDispatcher
 {

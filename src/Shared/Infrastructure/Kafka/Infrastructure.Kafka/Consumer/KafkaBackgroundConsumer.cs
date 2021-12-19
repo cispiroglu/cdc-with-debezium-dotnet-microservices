@@ -4,12 +4,12 @@ using Shared.Common.Kafka;
 
 namespace Infrastructure.Kafka.Consumer;
 
-public class BackgroundKafkaConsumer<Tk, Tv, TContext> : IApplicationLifecycleHook
+public class KafkaBackgroundConsumer<Tk, Tv, TContext> : IApplicationLifecycleHook
 {
     private readonly KafkaConsumerConfig _consumerConfiguration;
     private readonly ILifetimeScopeProvider _lifetimeScopeProvider;
     
-    public BackgroundKafkaConsumer(ILifetimeScopeProvider lifetimeScopeProvider, KafkaConsumerConfig consumerConfiguration)
+    public KafkaBackgroundConsumer(ILifetimeScopeProvider lifetimeScopeProvider, KafkaConsumerConfig consumerConfiguration)
     {
         _lifetimeScopeProvider = lifetimeScopeProvider;
         _consumerConfiguration = consumerConfiguration;

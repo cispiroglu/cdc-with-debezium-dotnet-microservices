@@ -1,8 +1,8 @@
 ﻿namespace Shared.Common.Kafka;
 
-public class ConsumerConfiguration
+public class KafkaConsumerConfiguration
 {
-    public string Topic { get; set; }
-    public string GroupId { get; set; }
-    public string BootstrapServers { get; set; }
+    public string Topic { get; set; } = string.Empty;
+    public string GroupId { get; set; } = string.Empty;
+    public string BootstrapServers { get; set; } = string.Empty;
 }

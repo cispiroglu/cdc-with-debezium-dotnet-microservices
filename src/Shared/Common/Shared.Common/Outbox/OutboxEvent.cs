@@ -11,14 +11,7 @@ public class OutboxEvent
         Payload = payload;
     }
 
-    public void SetTenantId(Guid tenantId)
-    {
-        TenantId = tenantId;
-    }
-
     public Guid Id { get; }
-
-    public Guid TenantId { get; private set; }
 
     public Guid AggregateId { get; }
         

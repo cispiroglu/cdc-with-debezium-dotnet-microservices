@@ -35,7 +35,7 @@ public static class ConfigurationHelper
             if (_dbParams != null) 
                 return _dbParams;
             
-            var dbParams = Configuration.GetSection(nameof(DbParams)).Get<DbParams.DbParams>();
+            _dbParams = Configuration.GetSection(nameof(DbParams)).Get<DbParams.DbParams>();
 
             return _dbParams;
         }

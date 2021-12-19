@@ -1,6 +1,13 @@
-﻿namespace Infrastructure.MediatR.Extensions.Autofac;
+﻿using Autofac;
+using Infrastructure.MediatR.Behavior;
+using MediatR;
 
-public class MediatRBehaviorModule
+namespace Infrastructure.MediatR.Extensions.Autofac;
+
+public class MediatRBehaviorModule : Module
 {
-    
+    protected override void Load(ContainerBuilder builder)
+    {
+        builder.RegisterGeneric(typeof(UnhandledExceptionBehaviour<,>)).As(typeof(IPipelineBehavior<,>));
+    }
 }

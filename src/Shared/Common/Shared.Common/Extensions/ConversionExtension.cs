@@ -2,6 +2,22 @@
 
 public static class ConversionExtension
 {
+    public static List<KeyValuePair<string, object>> ToKeyValuePair(this object me) {
+        var result = new List<KeyValuePair<string, object>>();
+        foreach (var property in me.GetType().GetProperties()) {
+            result.Add(new KeyValuePair<string, object>(property.Name, property.GetValue(me)));
+        }
+        return result;
+    }
+    
+    public static List<KeyValuePair<string, string>> ToKeyValuePairWithString(this object me) {
+        var result = new List<KeyValuePair<string, string>>();
+        foreach (var property in me.GetType().GetProperties()) {
+            result.Add(new KeyValuePair<string, string>(property.Name, property.GetValue(me)?.ToString()));
+        }
+        return result;
+    }
+    
     public static TEnum ToEnum<TEnum>(this int val) where TEnum : struct, IComparable, IFormattable, IConvertible
     {
         if (!typeof(TEnum).IsEnum)

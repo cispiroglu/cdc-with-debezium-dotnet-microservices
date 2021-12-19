@@ -1,6 +1,6 @@
 ﻿namespace Shared.Common.DomainEntity;
 
-public class IDomainEntity
+public class IDomainEntity<TPrimaryKey>
 {
-    
+    TPrimaryKey Id { get; set; }
 }

@@ -1,6 +1,8 @@
-﻿namespace Leave.Domain.Aggregates.EmployeeLeaveAggregate;
+﻿using Shared.Common;
 
-public interface IEmployeeLeaveRepository
+namespace Leave.Domain.Aggregates.EmployeeLeaveAggregate;
+
+public interface IEmployeeLeaveRepository : IDomainCommandRepository<EmployeeLeave>
 {
     
 }

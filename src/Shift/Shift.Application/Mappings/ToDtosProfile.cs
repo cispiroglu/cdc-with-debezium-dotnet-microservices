@@ -1,6 +1,13 @@
-﻿namespace Shift.Application.Mappings;
+﻿using AutoMapper;
+using Shift.Application.Queries.TimeOffQueries;
+using Shift.Domain.Aggregates;
 
-public class ToDtosProfile
+namespace Shift.Application.Mappings;
+
+public class ToDtosProfile : Profile
 {
-    
+    public ToDtosProfile()
+    {
+        CreateMap<TimeOff, TimeOffDto>();
+    }
 }

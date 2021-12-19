@@ -10,7 +10,6 @@ public class OutboxEventsEntityTypeConfiguration: IEntityTypeConfiguration<Outbo
     {
         configuration.ToTable("OUTBOX_EVENTS");
         configuration.Property(x => x.Id).HasColumnName("ID").IsRequired();
-        configuration.Property(x => x.TenantId).HasColumnName("TENANT_ID").IsRequired();
         configuration.Property(x => x.AggregateId).HasColumnName("AGGREGATE_ID").IsRequired();
         configuration.Property(x => x.AggregateType).HasColumnName("AGGREGATE_TYPE").IsRequired();
         configuration.Property(x => x.EventType).HasColumnName("EVENT_TYPE").IsRequired();

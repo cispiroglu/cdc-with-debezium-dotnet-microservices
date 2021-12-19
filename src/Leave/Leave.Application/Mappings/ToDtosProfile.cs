@@ -1,6 +1,15 @@
-﻿namespace Leave.Application.Mappings;
+﻿using AutoMapper;
+using Leave.Application.Queries.EmployeeLeaveQueries;
+using Leave.Domain.Aggregates.EmployeeLeaveAggregate;
+using Leave.Domain.Events.EmployeeLeave;
 
-public class ToDtosProfile
+namespace Leave.Application.Mappings;
+
+public class ToDtosProfile : Profile
 {
-    
+    public ToDtosProfile()
+    {
+        CreateMap<EmployeeLeave, EmployeeLeaveDto>();
+        CreateMap<EmployeeLeave, EmployeeLeaveCreatedEvent>();
+    }
 }

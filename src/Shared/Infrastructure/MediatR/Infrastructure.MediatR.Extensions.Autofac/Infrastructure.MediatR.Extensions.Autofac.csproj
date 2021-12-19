@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="6.2.0" />
+        <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="7.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Infrastructure.MediatR\Infrastructure.MediatR.csproj" />
+    </ItemGroup>
+
 </Project>

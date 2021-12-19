@@ -6,4 +6,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Common\Shared.Common.Extensions.Configuration\Shared.Common.Extensions.Configuration.csproj" />
+      <ProjectReference Include="..\..\Shared\Infrastructure\EntityFramework\Infrastructure.EntityFramework.Extensions.Autofac\Infrastructure.EntityFramework.Extensions.Autofac.csproj" />
+      <ProjectReference Include="..\Shift.Application\Shift.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations" />
+    </ItemGroup>
+
 </Project>
