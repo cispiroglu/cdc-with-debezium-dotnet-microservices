@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "6cc4e1c3-3173-4d57-b39d-573c2d42db4f",
+		"name": "debezium-connector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create_connector-mssql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"employee_leave_outbox_connector_mssql\",\r\n  \"config\": {\r\n    \"connector.class\": \"io.debezium.connector.sqlserver.SqlServerConnector\",\r\n    \"tasks.max\": \"1\",\r\n    \"database.hostname\": \"cdc_debezium_sql\",\r\n    \"database.port\": \"1433\",\r\n    \"database.user\": \"sa\",\r\n    \"database.password\": \"zvjrWbFHf6jT\",\r\n    \"database.dbname\": \"leave\",\r\n    \"database.server.name\": \"sqlserver\", \r\n    \"table.whitelist\": \"dbo.outbox_events\",\r\n    \"slot.name\": \"leave_slot\",\r\n    \"transforms\": \"outbox\",\r\n    \"transforms.outbox.type\": \"io.debezium.transforms.outbox.EventRouter\",\r\n    \"transforms.outbox.table.field.event.id\": \"ID\",\r\n    \"transforms.outbox.table.field.event.key\": \"AGGREGATE_ID\",\r\n    \"transforms.outbox.table.field.event.payload\": \"PAYLOAD\",\r\n    \"transforms.outbox.table.field.event.type\": \"EVENT_YPE\",\r\n    \"transforms.outbox.route.by.field\": \"AGGREGATE_TYPE\",\r\n    \"transforms.outbox.route.topic.replacement\": \"employee_leave_events\",\r\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n    \"key.converter.schemas.enable\": \"false\",\r\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n    \"value.converter.schemas.enable\": \"false\",\r\n    \"include.schema.changes\": \"false\",\r\n    \"database.history.kafka.bootstrap.servers\" : \"kafka:29092\",\r\n    \"database.history.kafka.topic\": \"sqlserver.leave.employee_leave_events\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_connector-postgresql",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"employee_leave_outbox_connector_postgresql\",\r\n  \"config\": {\r\n    \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n    \"tasks.max\": \"1\",\r\n    \"database.hostname\": \"cdc_debezium_postgres\",\r\n    \"database.port\": \"5432\",\r\n    \"database.user\": \"admin\",\r\n    \"database.password\": \"zvjrWbFHf6jT\",\r\n    \"database.dbname\": \"Leave\",\r\n    \"database.server.name\": \"postgres\", \r\n    \"table.include.list\": \"public.outbox_events\",\r\n    \"slot.name\": \"leave_slot\",\r\n    \"transforms\": \"outbox\",\r\n    \"transforms.outbox.type\": \"io.debezium.transforms.outbox.EventRouter\",\r\n    \"transforms.outbox.table.field.event.id\": \"ID\",\r\n    \"transforms.outbox.table.field.event.key\": \"AGGREGATE_ID\",\r\n    \"transforms.outbox.table.field.event.payload\": \"PAYLOAD\",\r\n    \"transforms.outbox.table.field.event.type\": \"EVENT_YPE\",\r\n    \"transforms.outbox.route.by.field\": \"AGGREGATE_TYPE\",\r\n    \"transforms.outbox.route.topic.replacement\": \"employee_leave_events\",\r\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n    \"key.converter.schemas.enable\": \"false\",\r\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n    \"value.converter.schemas.enable\": \"false\",\r\n    \"include.schema.changes\": \"false\",\r\n    \"database.history.kafka.bootstrap.servers\" : \"kafka:29092\",\r\n    \"database.history.kafka.topic\": \"postgres.leave.employee_leave_events\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate_config",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"connector.class\": \"io.debezium.connector.sqlserver.SqlServerConnector\",\r\n    \"tasks.max\": \"1\",\r\n    \"database.hostname\": \"cdc_debezium_sql\",\r\n    \"database.port\": \"1433\",\r\n    \"database.user\": \"sa\",\r\n    \"database.password\": \"zvjrWbFHf6jT\",\r\n    \"database.dbname\": \"leave\",\r\n    \"database.server.name\": \"sql_server\",\r\n    \"table.whitelist\": \"leave.outbox_events\",\r\n    \"slot.name\": \"leave_slot\",\r\n    \"transforms\": \"outbox\",\r\n    \"transforms.outbox.type\": \"io.debezium.transforms.outbox.EventRouter\",\r\n    \"transforms.outbox.table.field.event.id\": \"id\",\r\n    \"transforms.outbox.table.field.event.key\": \"aggregate_id\",\r\n    \"transforms.outbox.table.field.event.type\": \"type\",\r\n    \"transforms.outbox.table.field.event.payload.id\": \"aggregate_id\",\r\n    \"transforms.outbox.table.fields.additional.placement\": \"type:header:eventType\",\r\n    \"transforms.outbox.route.by.field\": \"aggregate_type\",\r\n    \"transforms.outbox.route.topic.replacement\": \"customer_events\",\r\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n    \"key.converter.schemas.enable\": \"false\",\r\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n    \"value.converter.schemas.enable\": \"false\",\r\n    \"include.schema.changes\": \"false\",\r\n    \"database.history.kafka.bootstrap.servers\": \"kafka:29092\",\r\n    \"database.history.kafka.topic\": \"sql_server.leave.employee_leave_events\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connector-plugins/SqlServerConnector/config/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connector-plugins",
+						"SqlServerConnector",
+						"config",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_connectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resume_connector",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/connectors/employee_leave_outbox_connector_mssql/resume",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"employee_leave_outbox_connector_mssql",
+						"resume"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_connector",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/connectors/employee_leave_outbox_connector_postgresql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"employee_leave_outbox_connector_postgresql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
