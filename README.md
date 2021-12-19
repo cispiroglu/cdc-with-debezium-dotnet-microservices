@@ -48,7 +48,7 @@ This project implements <a href="https://microservices.io/patterns/data/transact
         @source_name   = N'OUTBOX_EVENTS',  
         @capture_instance = N'LEAVE_OUTBOX_EVENTS'  
         ````
-  * create debezium connector by using postman collection / create_connector-mssql
+  * create debezium connector by using <a href:="https://github.com/cispiroglu/cdc-with-debezium-dotnet-microservices/blob/master/postman_collection/debezium-connector.postman_collection.json">postman collection</a> / create_connector-mssql
   * check connector is created / get_connectors
   * debezium and db settings is ok so ready to go. you can use swagger for creating new leave then get event then insert from shift.
   
@@ -56,8 +56,9 @@ This project implements <a href="https://microservices.io/patterns/data/transact
   * up docker-compose `docker-compose.postgres.yml`
   * create migration then update database with dotnet ef cli
   * for postgres prefer `debezium/postgres` image because cdc configuration ok by default. configuration not necessary like ms-sql just setup debezium connector
-  * create debezium connector by using postman collection / create_connector-postgresql
+  * create debezium connector by using <a href:="https://github.com/cispiroglu/cdc-with-debezium-dotnet-microservices/blob/master/postman_collection/debezium-connector.postman_collection.json">postman collection</a> / create_connector-postgresql
   * check connector is created / get_connectors
   * debezium and db settings is ok so ready to go. you can use swagger for creating new leave then get event then insert from shift.
   
 
+inspired from <a href:="https://github.com/suadev/microservices-change-data-capture-with-debezium">this</a> suadev repo.
